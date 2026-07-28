@@ -1,0 +1,54 @@
+{
+    "character_text_splitter_chunks": {
+        "context_recall": 0.594,
+        "context_precision": 0.458,
+        "faithfullness": 0.542,
+        "premium_cost": 0.612,
+        "fast_cost": 0.019,
+        "open_cost": 0.006,
+        "total_tokens": 1181.25,
+        "input_tokens": 1160.125,
+        "output_tokens": 21.125,
+        "latency_seconds": 2.385,
+        "ingestion_time": 1.42
+    },
+    "recursive_text_splitter_chunks": {
+        "context_recall": 0.594,
+        "context_precision": 0.458,
+        "faithfullness": 0.667,
+        "premium_cost": 0.612,
+        "fast_cost": 0.019,
+        "open_cost": 0.006,
+        "total_tokens": 1181.5,
+        "input_tokens": 1160.125,
+        "output_tokens": 21.375,
+        "latency_seconds": 1.427,
+        "ingestion_time": 0.722
+    },
+    "token_text_splitter_chunks": {
+        "context_recall": 0.812,
+        "context_precision": 0.391,
+        "faithfullness": 0.5,
+        "premium_cost": 1.76,
+        "fast_cost": 0.053,
+        "open_cost": 0.017,
+        "total_tokens": 3455.125,
+        "input_tokens": 3422.5,
+        "output_tokens": 32.625,
+        "latency_seconds": 4.723,
+        "ingestion_time": 0.523
+    },
+    "semantic_chunks": {
+        "context_recall": 0.698,
+        "context_precision": 0.365,
+        "faithfullness": 0.396,
+        "premium_cost": 0.642,
+        "fast_cost": 0.02,
+        "open_cost": 0.006,
+        "total_tokens": 1236.0,
+        "input_tokens": 1212.375,
+        "output_tokens": 23.625,
+        "latency_seconds": 2.416,
+        "ingestion_time": 16.943
+    }
+}

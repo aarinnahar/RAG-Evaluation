@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <title>Chunking Strategy Evaluation Dashboard</title>
+    <!-- Tailwind CSS for rapid, modern utility-first styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for crisp typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        code, pre { font-family: 'JetBrains Mono', monospace; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-4 md:p-8 lg:p-12 selection:bg-teal-500 selection:text-slate-900">
+
+    <div class="max-w-7xl mx-auto space-y-8">
+
+        <!-- HEADER SECTION -->
+        <header class="bg-slate-800/50 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-slate-700/50 flex flex-col md:flex-row md:items-center md:justify-between gap-6 shadow-xl">
+            <div class="space-y-2">
+                <div class="flex items-center gap-3">
+                    <span class="flex h-3 w-3 relative">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-teal-500"></span>
+                    </span>
+                    <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent">
+                        Chunking Strategy Evaluation Report
+                    </h1>
+                </div>
+                <div class="flex flex-wrap gap-2 text-xs font-medium pt-1">
+                    <span class="px-3 py-1 bg-slate-700 text-slate-300 rounded-md border border-slate-600/50">📄 File: txt_document.pdf</span>
+                    <span class="px-3 py-1 bg-slate-700 text-slate-300 rounded-md border border-slate-600/50">🎯 Dataset: Golden Dataset (8 Test Queries)</span>
+                </div>
+            </div>
+            
+            <div class="flex flex-wrap items-center gap-3">
+
+    <!-- Model + Embeddings Card -->
+    <div class="flex items-center gap-4 bg-slate-900/60 px-4 py-3 rounded-xl border border-slate-700/60">
+
+        <!-- Target Model -->
+        <div class="text-xs">
+            <span class="block text-slate-500 font-bold uppercase tracking-wider">
+                🎯 Target Model
+            </span>
+            <span class="text-teal-400 font-semibold text-sm font-mono">
+                qwen2.5:7b
+            </span>
+        </div>
+
+        <div class="w-px h-10 bg-slate-700"></div>
+
+        <!-- Embeddings -->
+        <div class="text-xs">
+            <span class="block text-slate-500 font-bold uppercase tracking-wider">
+                🧠 Embeddings
+            </span>
+            <span class="text-purple-400 font-semibold text-sm font-mono">
+                all-MiniLM-L6-v2
+            </span>
+        </div>
+
+    </div>
+
+    <!-- Chunk Configuration Card -->
+    <div class="bg-slate-900/60 px-4 py-3 rounded-xl border border-slate-700/60">
+
+        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-2">
+            📦 Chunk Configuration
+        </div>
+
+        <div class="flex items-center gap-2">
+
+            <span class="px-3 py-1 rounded-lg bg-cyan-500/10 border border-cyan-500/30">
+                <span class="text-cyan-400 text-xs font-semibold">
+                    Size:
+                </span>
+                <span class="text-cyan-300 text-xs font-mono">
+                    1050
+                </span>
+            </span>
+
+            <span class="px-3 py-1 rounded-lg bg-orange-500/10 border border-orange-500/30">
+                <span class="text-orange-400 text-xs font-semibold">
+                    Overlap:
+                </span>
+                <span class="text-orange-300 text-xs font-mono">
+                    130
+                </span>
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+        </header>
+
+        <!-- RECOMMENDATION SUMMARY (THE HERO) -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Winner Strategy Card -->
+            <div class="lg:col-span-2 bg-gradient-to-br from-teal-600 to-emerald-700 rounded-2xl p-6 md:p-8 text-slate-100 shadow-2xl relative overflow-hidden border border-emerald-500/30 flex flex-col justify-between">
+                <div class="relative z-10 space-y-4">
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-900/40 text-emerald-300 rounded-full text-xs font-bold uppercase tracking-wide border border-emerald-400/20">
+                        🏆 Evaluator Winner Choice
+                    </div>
+                    <h2 class="text-3xl font-black tracking-tight">Recursive Character Text Splitter</h2>
+                    <p class="text-teal-100 text-sm md:text-base leading-relaxed max-w-2xl font-light">
+                        Based on the provided metrics, the **recursive_text_splitter_chunks** strategy emerges as the clear winner in our evaluation. It excels in both retrieval and generation tasks with superior speed and cost efficiency. While the **character_text_splitter_chunks** strategy performs comparably in some areas, it introduces minor risks of hallucinations and lags significantly behind in processing times.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-teal-500/30 flex items-center justify-between relative z-10">
+                    <div class="text-xs uppercase tracking-wider text-teal-200 font-semibold">Overall Index Score</div>
+                    <div class="text-2xl font-black text-white font-mono bg-slate-900/30 px-3 py-1 rounded-lg border border-white/10">
+                        59.6%
+                    </div>
+                </div>
+                <!-- Graphic decoration elements -->
+                <div class="absolute -bottom-16 -right-16 w-48 h-48 bg-white/5 rounded-full blur-xl pointer-events-none"></div>
+                <div class="absolute top-4 right-4 text-white/10 text-9xl font-black pointer-events-none select-none">#1</div>
+            </div>
+
+            <!-- Tier List Card -->
+            <div class="bg-slate-800/40 rounded-2xl p-6 border border-slate-700/50 flex flex-col justify-between shadow-lg">
+                <div>
+                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span> Strategy Ranking Matrix
+                    </h3>
+                    <div class="space-y-3">
+                        
+                        <div class="flex justify-between items-center p-2 rounded-xl bg-teal-500/10 border border-teal-500/30">
+                            <div class="truncate max-w-[70%]">
+                                <span class="block font-semibold text-sm truncate text-teal-400">
+                                    Recursive Character Text Splitter
+                                </span>
+                                <span class="text-[11px] text-slate-400 block font-mono">Context is Cut Off</span>
+                            </div>
+                            <div class="text-right flex flex-col items-end">
+                                <span class="text-xs font-bold font-mono text-slate-300">59.6% Acc.</span>
+                                <span class="text-[10px] text-amber-400 tracking-tighter">
+                                    ⭐
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center p-2 rounded-xl bg-slate-900/30 border border-slate-800">
+                            <div class="truncate max-w-[70%]">
+                                <span class="block font-semibold text-sm truncate text-slate-200">
+                                    Character Text Splitter
+                                </span>
+                                <span class="text-[11px] text-slate-400 block font-mono">Context is Cut Off</span>
+                            </div>
+                            <div class="text-right flex flex-col items-end">
+                                <span class="text-xs font-bold font-mono text-slate-300">54.6% Acc.</span>
+                                <span class="text-[10px] text-amber-400 tracking-tighter">
+                                    ⭐
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center p-2 rounded-xl bg-slate-900/30 border border-slate-800">
+                            <div class="truncate max-w-[70%]">
+                                <span class="block font-semibold text-sm truncate text-slate-200">
+                                    Semantic Text Splitter
+                                </span>
+                                <span class="text-[11px] text-slate-400 block font-mono">Context is Cut Off</span>
+                            </div>
+                            <div class="text-right flex flex-col items-end">
+                                <span class="text-xs font-bold font-mono text-slate-300">51.1% Acc.</span>
+                                <span class="text-[10px] text-amber-400 tracking-tighter">
+                                    ⭐
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center p-2 rounded-xl bg-slate-900/30 border border-slate-800">
+                            <div class="truncate max-w-[70%]">
+                                <span class="block font-semibold text-sm truncate text-slate-200">
+                                    Token Text Splitter
+                                </span>
+                                <span class="text-[11px] text-slate-400 block font-mono">Too Expensive & Slow</span>
+                            </div>
+                            <div class="text-right flex flex-col items-end">
+                                <span class="text-xs font-bold font-mono text-slate-300">60.3% Acc.</span>
+                                <span class="text-[10px] text-amber-400 tracking-tighter">
+                                    ⭐⭐
+                                </span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STRATEGY COMPARISON MATRIX TABLE -->
+        <section class="bg-slate-800/30 rounded-2xl border border-slate-700/50 overflow-hidden shadow-lg">
+            <div class="p-6 border-b border-slate-700/50 bg-slate-800/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-100 flex items-center gap-2">
+                        <span>🏎️</span> Performance Comparison Matrix
+                    </h2>
+                    <p class="text-xs text-slate-400 mt-1">Deterministic metrics processed on execution environment.</p>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                </h2>
+                    <p class="text-xs text-slate-400 mt-1 text-right">**Cost is calculated per 100 queries</p>
+                    
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-800/70 text-[11px] uppercase tracking-wider text-slate-400 border-b border-slate-700 font-mono">
+                            <th class="p-4 font-bold">Strategy Configuration</th>
+                            <th class="p-4 font-bold" title="Percentage of required facts found">Context Recall</th>
+                            <th class="p-4 font-bold" title="Absence of hallucinations">Faithfulness</th>
+                            <th class="p-4 font-bold">Avg. Latency</th>
+                            <th class="p-4 font-bold">Tokens / Query</th>
+                            <th class="p-4 font-bold">Cost / Premium (GPT-4o, Claude 3.5 Sonnet)</th>
+                            <th class="p-4 font-bold">Cost / Fast Tier (GPT-4o-mini, Gemini 1.5 Flash)</th>
+                            <th class="p-4 font-bold">Cost / Open-Weights (Llama 3 8B via standard hosting providers)</th>
+                            <th class="p-4 font-bold text-right">System Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm divide-y divide-slate-800">
+    
+
+    
+    
+
+    
+
+    <tr class="bg-emerald-500/5 hover:bg-slate-800/40 transition-colors duration-200">
+
+        <!-- Strategy -->
+        <td class="p-4 font-semibold text-emerald-400 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            Recursive Character Text Splitter
+        </td>
+
+        <!-- Context Recall -->
+        <td class="p-4 font-mono text-emerald-400">
+            0.594%
+        </td>
+
+        <!-- Faithfulness -->
+        <td class="p-4 font-mono text-emerald-400">
+            0.667%
+        </td>
+
+        <!-- Latency -->
+        <td class="p-4 font-mono text-emerald-400">
+            1.427ms
+        </td>
+
+        <!-- Tokens -->
+        <td class="p-4 font-mono text-emerald-400">
+            1181.5
+        </td>
+
+        <!-- Premium Cost -->
+        <td class="p-4 font-mono text-emerald-400">
+            $0.612
+        </td>
+
+        <!-- Fast Cost -->
+        <td class="p-4 font-mono text-emerald-400">
+            $0.019
+        </td>
+
+        <!-- Open Cost -->
+        <td class="p-4 font-mono text-emerald-400">
+            $0.006
+        </td>
+
+        <!-- Grade -->
+        <td class="p-4 text-right">
+            <span class="px-2 py-0.5 rounded font-mono text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                A+ (Winner)
+            </span>
+        </td>
+
+    </tr>
+
+    
+
+    
+    
+
+    
+
+    <tr class="bg-lime-500/5 hover:bg-slate-800/40 transition-colors duration-200">
+
+        <!-- Strategy -->
+        <td class="p-4 font-semibold text-lime-300 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+            Character Text Splitter
+        </td>
+
+        <!-- Context Recall -->
+        <td class="p-4 font-mono text-lime-300">
+            0.594%
+        </td>
+
+        <!-- Faithfulness -->
+        <td class="p-4 font-mono text-lime-300">
+            0.542%
+        </td>
+
+        <!-- Latency -->
+        <td class="p-4 font-mono text-lime-300">
+            2.385ms
+        </td>
+
+        <!-- Tokens -->
+        <td class="p-4 font-mono text-lime-300">
+            1181.25
+        </td>
+
+        <!-- Premium Cost -->
+        <td class="p-4 font-mono text-lime-300">
+            $0.612
+        </td>
+
+        <!-- Fast Cost -->
+        <td class="p-4 font-mono text-lime-300">
+            $0.019
+        </td>
+
+        <!-- Open Cost -->
+        <td class="p-4 font-mono text-lime-300">
+            $0.006
+        </td>
+
+        <!-- Grade -->
+        <td class="p-4 text-right">
+            <span class="px-2 py-0.5 rounded font-mono text-xs font-bold bg-slate-700 text-slate-300">
+                B
+            </span>
+        </td>
+
+    </tr>
+
+    
+
+    
+    
+
+    
+
+    <tr class="bg-amber-500/5 hover:bg-slate-800/40 transition-colors duration-200">
+
+        <!-- Strategy -->
+        <td class="p-4 font-semibold text-amber-300 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+            Semantic Text Splitter
+        </td>
+
+        <!-- Context Recall -->
+        <td class="p-4 font-mono text-amber-300">
+            0.698%
+        </td>
+
+        <!-- Faithfulness -->
+        <td class="p-4 font-mono text-amber-300">
+            0.396%
+        </td>
+
+        <!-- Latency -->
+        <td class="p-4 font-mono text-amber-300">
+            2.416ms
+        </td>
+
+        <!-- Tokens -->
+        <td class="p-4 font-mono text-amber-300">
+            1236.0
+        </td>
+
+        <!-- Premium Cost -->
+        <td class="p-4 font-mono text-amber-300">
+            $0.642
+        </td>
+
+        <!-- Fast Cost -->
+        <td class="p-4 font-mono text-amber-300">
+            $0.02
+        </td>
+
+        <!-- Open Cost -->
+        <td class="p-4 font-mono text-amber-300">
+            $0.006
+        </td>
+
+        <!-- Grade -->
+        <td class="p-4 text-right">
+            <span class="px-2 py-0.5 rounded font-mono text-xs font-bold bg-rose-500/10 text-rose-400 border border-rose-500/20">
+                C-
+            </span>
+        </td>
+
+    </tr>
+
+    
+
+    
+    
+
+    
+
+    <tr class="bg-rose-500/5 hover:bg-slate-800/40 transition-colors duration-200">
+
+        <!-- Strategy -->
+        <td class="p-4 font-semibold text-rose-400 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-rose-700"></span>
+            Token Text Splitter
+        </td>
+
+        <!-- Context Recall -->
+        <td class="p-4 font-mono text-rose-400">
+            0.812%
+        </td>
+
+        <!-- Faithfulness -->
+        <td class="p-4 font-mono text-rose-400">
+            0.5%
+        </td>
+
+        <!-- Latency -->
+        <td class="p-4 font-mono text-rose-400">
+            4.723ms
+        </td>
+
+        <!-- Tokens -->
+        <td class="p-4 font-mono text-rose-400">
+            3455.125
+        </td>
+
+        <!-- Premium Cost -->
+        <td class="p-4 font-mono text-rose-400">
+            $1.76
+        </td>
+
+        <!-- Fast Cost -->
+        <td class="p-4 font-mono text-rose-400">
+            $0.053
+        </td>
+
+        <!-- Open Cost -->
+        <td class="p-4 font-mono text-rose-400">
+            $0.017
+        </td>
+
+        <!-- Grade -->
+        <td class="p-4 text-right">
+            <span class="px-2 py-0.5 rounded font-mono text-xs font-bold bg-rose-900/40 text-rose-500 border border-rose-900/50">
+                F (Fails)
+            </span>
+        </td>
+
+    </tr>
+
+    
+</tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- DEEP-DIVE PERFORMANCE INSIGHTS (THE 3 COMPONENT CARDS FROM PYDANTIC SCHEMA) -->
+        <section class="space-y-6">
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl font-bold tracking-tight text-slate-100 flex items-center gap-2">
+                    <span class="text-teal-400">🔍</span> Deep-Dive Performance Insights
+                </h2>
+                <span class="text-xs bg-slate-800 border border-slate-700 px-2.5 py-1 rounded-md text-slate-400 font-mono">
+                    Node: analyze_metrics_node
+                </span>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- CARD 1: RETRIEVAL QUALITY -->
+                <div class="bg-slate-800/40 rounded-2xl border border-slate-700/60 overflow-hidden flex flex-col justify-between shadow-md group hover:border-blue-500/40 transition-colors">
+                    <div>
+                        <div class="p-5 border-b border-slate-700/50 bg-slate-800/50 flex items-center justify-between">
+                            <span class="text-[10px] font-bold text-blue-400 uppercase tracking-widest font-mono">01 // Retrieval</span>
+                            <span class="p-1 rounded-md bg-blue-500/10 text-blue-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                            </span>
+                        </div>
+                        <div class="p-5 space-y-3">
+                            <h3 class="font-bold text-slate-100 text-base leading-tight group-hover:text-blue-400 transition-colors">
+                                Retrieval Insights
+                            </h3>
+                            <p class="text-xs text-slate-400 leading-relaxed font-light">
+                                Both recursive_text_splitter_chunks and character_text_splitter_chunks strategies tie in retrieval accuracy and data extraction focus. However, the recursive approach ensures a more consistent performance without introducing any risks.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- HIDDEN STORY COMPONENT -->
+                    <div class="p-4 bg-slate-900/60 border-t border-slate-800 m-3 rounded-xl border border-blue-500/10">
+                        <div class="text-[10px] font-bold text-blue-400 uppercase tracking-wider flex items-center gap-1.5 mb-1 font-mono">
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            The Hidden Story
+                        </div>
+                        <p class="text-xs text-slate-300 italic font-light leading-normal">
+                            The identical memory span and exact same number of correct answers indicate that both strategies are equally effective in this phase.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CARD 2: GENERATION QUALITY -->
+                <div class="bg-slate-800/40 rounded-2xl border border-slate-700/60 overflow-hidden flex flex-col justify-between shadow-md group hover:border-purple-500/40 transition-colors">
+                    <div>
+                        <div class="p-5 border-b border-slate-700/50 bg-slate-800/50 flex items-center justify-between">
+                            <span class="text-[10px] font-bold text-purple-400 uppercase tracking-widest font-mono">02 // Generation</span>
+                            <span class="p-1 rounded-md bg-purple-500/10 text-purple-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            </span>
+                        </div>
+                        <div class="p-5 space-y-3">
+                            <h3 class="font-bold text-slate-100 text-base leading-tight group-hover:text-purple-400 transition-colors">
+                                Generation Insights
+                            </h3>
+                            <p class="text-xs text-slate-400 leading-relaxed font-light">
+                                recursive_text_splitter_chunks outperforms character_text_splitter_chunks by being more honest, with a 18.7% lower risk of introducing loose interpretations or minor hallucinations.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- HIDDEN STORY COMPONENT -->
+                    <div class="p-4 bg-slate-900/60 border-t border-slate-800 m-3 rounded-xl border border-purple-500/10">
+                        <div class="text-[10px] font-bold text-purple-400 uppercase tracking-wider flex items-center gap-1.5 mb-1 font-mono">
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            The Hidden Story
+                        </div>
+                        <p class="text-xs text-slate-300 italic font-light leading-normal">
+                            This edge in honesty and accuracy is crucial for maintaining the integrity of generated content.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CARD 3: EFFICIENCY AND COST -->
+                <div class="bg-slate-800/40 rounded-2xl border border-slate-700/60 overflow-hidden flex flex-col justify-between shadow-md group hover:border-amber-500/40 transition-colors">
+                    <div>
+                        <div class="p-5 border-b border-slate-700/50 bg-slate-800/50 flex items-center justify-between">
+                            <span class="text-[10px] font-bold text-amber-400 uppercase tracking-widest font-mono">03 // Cost & Ops</span>
+                            <span class="p-1 rounded-md bg-amber-500/10 text-amber-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </span>
+                        </div>
+                        <div class="p-5 space-y-3">
+                            <h3 class="font-bold text-slate-100 text-base leading-tight group-hover:text-amber-400 transition-colors">
+                                Efficiency Insights
+                            </h3>
+                            <p class="text-xs text-slate-400 leading-relaxed font-light">
+                                recursive_text_splitter_chunks stands out as the most efficient choice, offering a 52.2% cost advantage over character_text_splitter_chunks while processing documents 96.7% faster.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- HIDDEN STORY COMPONENT -->
+                    <div class="p-4 bg-slate-900/60 border-t border-slate-800 m-3 rounded-xl border border-amber-500/10">
+                        <div class="text-[10px] font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5 mb-1 font-mono">
+                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg>
+                            The Hidden Story
+                        </div>
+                        <p class="text-xs text-slate-300 italic font-light leading-normal">
+                            The significant speed and cost benefits make recursive_text_splitter_chunks the smarter production choice.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- VISUAL ANALYTICS -->
+<section class="space-y-6">
+
+    <div class="flex items-center justify-between">
+        <h2 class="text-xl font-bold tracking-tight text-slate-100 flex items-center gap-2">
+            <span class="text-cyan-400">📊</span>
+            Visual Analytics
+        </h2>
+
+        <span class="text-xs bg-slate-800 border border-slate-700 px-2 py-1 rounded-md text-slate-400 font-mono">
+            Interactive Plotly Dashboard
+        </span>
+    </div>
+
+    <!-- Graph 1 -->
+    <div class="bg-slate-800/40 rounded-2xl border border-slate-700/60 p-6 shadow-lg">
+
+        <div class="mb-5">
+            <h3 class="text-lg font-semibold text-slate-100">
+                Retrieval vs. Generation Quality
+            </h3>
+
+            <p class="text-sm text-slate-400 mt-1">
+                Comparison of retrieval quality, precision and faithfulness across
+                chunking strategies.
+            </p>
+        </div>
+
+        <div style="height:100%; width:100%;">                            <div id="4cabef20-5a28-4b82-bae9-d3139e6fcd53" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("4cabef20-5a28-4b82-bae9-d3139e6fcd53")) {                    Plotly.newPlot(                        "4cabef20-5a28-4b82-bae9-d3139e6fcd53",                        [{"hovertemplate":"\u003cb\u003e%{hovertext}\u003c\u002fb\u003e\u003cbr\u003e\u003cbr\u003eChunking Strategy=character_text_splitter_chunks\u003cbr\u003eTotal Tokens (Cost)=%{x}\u003cbr\u003eContext Recall (Quality)=%{y}\u003cbr\u003eLatency (s)=%{marker.size}\u003cextra\u003e\u003c\u002fextra\u003e","hovertext":["character_text_splitter_chunks"],"legendgroup":"character_text_splitter_chunks","marker":{"color":"rgb(95, 70, 144)","size":{"dtype":"f8","bdata":"FK5H4XoUA0A="},"sizemode":"area","sizeref":0.0038555102040816326,"symbol":"circle"},"mode":"markers","name":"character_text_splitter_chunks","orientation":"v","showlegend":true,"x":{"dtype":"f8","bdata":"AAAAAAB1kkA="},"xaxis":"x","y":{"dtype":"f8","bdata":"NV66SQwC4z8="},"yaxis":"y","type":"scatter"},{"hovertemplate":"\u003cb\u003e%{hovertext}\u003c\u002fb\u003e\u003cbr\u003e\u003cbr\u003eChunking Strategy=recursive_text_splitter_chunks\u003cbr\u003eTotal Tokens (Cost)=%{x}\u003cbr\u003eContext Recall (Quality)=%{y}\u003cbr\u003eLatency (s)=%{marker.size}\u003cextra\u003e\u003c\u002fextra\u003e","hovertext":["recursive_text_splitter_chunks"],"legendgroup":"recursive_text_splitter_chunks","marker":{"color":"rgb(29, 105, 150)","size":{"dtype":"f8","bdata":"okW28\u002f3U9j8="},"sizemode":"area","sizeref":0.0038555102040816326,"symbol":"circle"},"mode":"markers","name":"recursive_text_splitter_chunks","orientation":"v","showlegend":true,"x":{"dtype":"f8","bdata":"AAAAAAB2kkA="},"xaxis":"x","y":{"dtype":"f8","bdata":"NV66SQwC4z8="},"yaxis":"y","type":"scatter"},{"hovertemplate":"\u003cb\u003e%{hovertext}\u003c\u002fb\u003e\u003cbr\u003e\u003cbr\u003eChunking Strategy=token_text_splitter_chunks\u003cbr\u003eTotal Tokens (Cost)=%{x}\u003cbr\u003eContext Recall (Quality)=%{y}\u003cbr\u003eLatency (s)=%{marker.size}\u003cextra\u003e\u003c\u002fextra\u003e","hovertext":["token_text_splitter_chunks"],"legendgroup":"token_text_splitter_chunks","marker":{"color":"rgb(56, 166, 165)","size":{"dtype":"f8","bdata":"MQisHFrkEkA="},"sizemode":"area","sizeref":0.0038555102040816326,"symbol":"circle"},"mode":"markers","name":"token_text_splitter_chunks","orientation":"v","showlegend":true,"x":{"dtype":"f8","bdata":"AAAAAED+qkA="},"xaxis":"x","y":{"dtype":"f8","bdata":"lkOLbOf76T8="},"yaxis":"y","type":"scatter"},{"hovertemplate":"\u003cb\u003e%{hovertext}\u003c\u002fb\u003e\u003cbr\u003e\u003cbr\u003eChunking Strategy=semantic_chunks\u003cbr\u003eTotal Tokens (Cost)=%{x}\u003cbr\u003eContext Recall (Quality)=%{y}\u003cbr\u003eLatency (s)=%{marker.size}\u003cextra\u003e\u003c\u002fextra\u003e","hovertext":["semantic_chunks"],"legendgroup":"semantic_chunks","marker":{"color":"rgb(15, 133, 84)","size":{"dtype":"f8","bdata":"hxbZzvdTA0A="},"sizemode":"area","sizeref":0.0038555102040816326,"symbol":"circle"},"mode":"markers","name":"semantic_chunks","orientation":"v","showlegend":true,"x":{"dtype":"f8","bdata":"AAAAAABQk0A="},"xaxis":"x","y":{"dtype":"f8","bdata":"vHSTGARW5j8="},"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#f2f5fa"},"error_y":{"color":"#f2f5fa"},"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"baxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"line":{"color":"#283442"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"marker":{"line":{"color":"#283442"}},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#506784"},"line":{"color":"rgb(17,17,17)"}},"header":{"fill":{"color":"#2a3f5f"},"line":{"color":"rgb(17,17,17)"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#f2f5fa","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#f2f5fa"},"geo":{"bgcolor":"rgb(17,17,17)","lakecolor":"rgb(17,17,17)","landcolor":"rgb(17,17,17)","showlakes":true,"showland":true,"subunitcolor":"#506784"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"dark"},"paper_bgcolor":"rgb(17,17,17)","plot_bgcolor":"rgb(17,17,17)","polar":{"angularaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","radialaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"yaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"zaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"}},"shapedefaults":{"line":{"color":"#f2f5fa"}},"sliderdefaults":{"bgcolor":"#C8D4E3","bordercolor":"rgb(17,17,17)","borderwidth":1,"tickwidth":0},"ternary":{"aaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"baxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","caxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"title":{"x":0.05},"updatemenudefaults":{"bgcolor":"#506784","borderwidth":0},"xaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"Total Tokens (Cost)"},"showgrid":true,"gridwidth":1,"gridcolor":"#ACA9A9"},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Context Recall (Quality)"},"showgrid":true,"gridwidth":1,"gridcolor":"#ACA9A9"},"legend":{"title":{"text":"Chunking Strategy"},"tracegroupgap":0,"itemsizing":"constant","bgcolor":"rgba(40,40,40,0.8)","bordercolor":"gray","borderwidth":1,"orientation":"v","x":1.02,"y":1,"xanchor":"left","yanchor":"top"},"title":{"text":"Quality vs. Cost Trade-off","font":{"size":20,"family":"Inter"},"x":0.5},"font":{"family":"Inter","color":"white"},"hoverlabel":{"font":{"size":14,"family":"Inter"},"bgcolor":"white"},"margin":{"l":70,"r":170,"t":70,"b":70}},                        {"responsive": true, "displaylogo": false}                    )                };            </script>        </div>
+
+    </div>
+
+    <!-- Graph 2 -->
+    <div class="bg-slate-800/40 rounded-2xl border border-slate-700/60 p-6 shadow-lg">
+
+        <div class="mb-5">
+            <h3 class="text-lg font-semibold text-slate-100">
+                Quality vs. Cost Trade-off
+            </h3>
+
+            <p class="text-sm text-slate-400 mt-1">
+                Relationship between retrieval quality and token cost for each
+                evaluated strategy.
+            </p>
+        </div>
+
+        <div style="height:100%; width:100%;">                            <div id="b74ed769-18e1-4139-a68c-3e2d48a47c0d" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("b74ed769-18e1-4139-a68c-3e2d48a47c0d")) {                    Plotly.newPlot(                        "b74ed769-18e1-4139-a68c-3e2d48a47c0d",                        [{"marker":{"color":"#00E5FF"},"name":"Context Recall","text":{"dtype":"f8","bdata":"NV66SQwC4z81XrpJDALjP5ZDi2zn++k\u002fvHSTGARW5j8="},"textfont":{"color":"white","size":11},"textposition":"outside","texttemplate":"%{text:.2f}","x":["character_text_splitter_chunks","recursive_text_splitter_chunks","token_text_splitter_chunks","semantic_chunks"],"y":{"dtype":"f8","bdata":"NV66SQwC4z81XrpJDALjP5ZDi2zn++k\u002fvHSTGARW5j8="},"type":"bar"},{"marker":{"color":"#00FF88"},"name":"Context Precision","text":{"dtype":"f8","bdata":"HVpkO99P3T8dWmQ730\u002fdP6AaL90kBtk\u002fXI\u002fC9Shc1z8="},"textfont":{"color":"white","size":11},"textposition":"outside","texttemplate":"%{text:.2f}","x":["character_text_splitter_chunks","recursive_text_splitter_chunks","token_text_splitter_chunks","semantic_chunks"],"y":{"dtype":"f8","bdata":"HVpkO99P3T8dWmQ730\u002fdP6AaL90kBtk\u002fXI\u002fC9Shc1z8="},"type":"bar"},{"marker":{"color":"#FF9F43"},"name":"Faithfulness","text":{"dtype":"f8","bdata":"8tJNYhBY4T\u002fy0k1iEFjlPwAAAAAAAOA\u002f8tJNYhBY2T8="},"textfont":{"color":"white","size":11},"textposition":"outside","texttemplate":"%{text:.2f}","x":["character_text_splitter_chunks","recursive_text_splitter_chunks","token_text_splitter_chunks","semantic_chunks"],"y":{"dtype":"f8","bdata":"8tJNYhBY4T\u002fy0k1iEFjlPwAAAAAAAOA\u002f8tJNYhBY2T8="},"type":"bar"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#f2f5fa"},"error_y":{"color":"#f2f5fa"},"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"baxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"line":{"color":"#283442"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"marker":{"line":{"color":"#283442"}},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#506784"},"line":{"color":"rgb(17,17,17)"}},"header":{"fill":{"color":"#2a3f5f"},"line":{"color":"rgb(17,17,17)"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#f2f5fa","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#f2f5fa"},"geo":{"bgcolor":"rgb(17,17,17)","lakecolor":"rgb(17,17,17)","landcolor":"rgb(17,17,17)","showlakes":true,"showland":true,"subunitcolor":"#506784"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"dark"},"paper_bgcolor":"rgb(17,17,17)","plot_bgcolor":"rgb(17,17,17)","polar":{"angularaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","radialaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"yaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"zaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"}},"shapedefaults":{"line":{"color":"#f2f5fa"}},"sliderdefaults":{"bgcolor":"#C8D4E3","bordercolor":"rgb(17,17,17)","borderwidth":1,"tickwidth":0},"ternary":{"aaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"baxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","caxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"title":{"x":0.05},"updatemenudefaults":{"bgcolor":"#506784","borderwidth":0},"xaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2}}},"title":{"text":"Retrieval vs. Generation Quality by Strategy","x":0.5,"font":{"color":"white","size":22,"family":"Inter"}},"xaxis":{"title":{"text":"Chunking Strategy"},"tickangle":-45},"uniformtext":{"minsize":10,"mode":"hide"},"legend":{"font":{"color":"white"},"orientation":"h","yanchor":"bottom","y":1.05,"xanchor":"center","x":0.5,"bgcolor":"rgba(0,0,0,0)","bordercolor":"rgba(255,255,255,0.2)"},"margin":{"t":100},"barmode":"group","yaxis":{"title":{"text":"Score (0 to 1)"},"showgrid":true,"gridwidth":1,"gridcolor":"rgba(255,255,255,0.1)","range":[0,1.0]}},                        {"responsive": true}                    )                };            </script>        </div>
+
+    </div>
+
+</section>
+
+    </div>
+</body>
+</html>s

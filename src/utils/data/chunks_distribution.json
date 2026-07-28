@@ -1,0 +1,26 @@
+{
+    "character_text_splitter_chunks": {
+        "total_chunks": 4.0,
+        "max_size": 1027.25,
+        "min_size": 985.0,
+        "avg_size": 1005.875
+    },
+    "recursive_text_splitter_chunks": {
+        "total_chunks": 4.0,
+        "max_size": 1027.25,
+        "min_size": 985.0,
+        "avg_size": 1005.875
+    },
+    "token_text_splitter_chunks": {
+        "total_chunks": 4.0,
+        "max_size": 4115.5,
+        "min_size": 3277.0,
+        "avg_size": 3823.25
+    },
+    "semantic_chunks": {
+        "total_chunks": 4.0,
+        "max_size": 1758.625,
+        "min_size": 428.625,
+        "avg_size": 1121.875
+    }
+}

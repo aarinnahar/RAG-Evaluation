@@ -1,0 +1,98 @@
+{
+    "character_text_splitter_chunks": {
+        "total_tokens": 1181.25,
+        "input_tokens": [
+            1156,
+            1187,
+            1170,
+            1154,
+            1157,
+            1179,
+            1168,
+            1110
+        ],
+        "output_tokens": [
+            12,
+            54,
+            12,
+            12,
+            27,
+            20,
+            9,
+            23
+        ],
+        "latency_seconds": 2.3854602575302124
+    },
+    "recursive_text_splitter_chunks": {
+        "total_tokens": 1181.5,
+        "input_tokens": [
+            1156,
+            1187,
+            1170,
+            1154,
+            1157,
+            1179,
+            1168,
+            1110
+        ],
+        "output_tokens": [
+            12,
+            54,
+            12,
+            12,
+            29,
+            20,
+            9,
+            23
+        ],
+        "latency_seconds": 1.4273542761802673
+    },
+    "token_text_splitter_chunks": {
+        "total_tokens": 3455.125,
+        "input_tokens": [
+            3506,
+            4091,
+            3455,
+            2050,
+            2050,
+            4068,
+            4065,
+            4095
+        ],
+        "output_tokens": [
+            12,
+            47,
+            12,
+            20,
+            116,
+            15,
+            26,
+            13
+        ],
+        "latency_seconds": 4.722887635231018
+    },
+    "semantic_chunks": {
+        "total_tokens": 1236.0,
+        "input_tokens": [
+            1416,
+            1003,
+            1109,
+            1414,
+            1418,
+            654,
+            498,
+            2187
+        ],
+        "output_tokens": [
+            46,
+            59,
+            12,
+            12,
+            15,
+            11,
+            12,
+            22
+        ],
+        "latency_seconds": 2.41580531001091
+    }
+}

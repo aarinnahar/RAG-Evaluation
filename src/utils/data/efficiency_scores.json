@@ -1,0 +1,6 @@
+{
+    "character_text_splitter_chunks": 0.11,
+    "recursive_text_splitter_chunks": 0.23,
+    "token_text_splitter_chunks": 0.02,
+    "semantic_chunks": 0.09
+}

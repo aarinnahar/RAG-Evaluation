@@ -1,0 +1,34 @@
+{
+    "character_text_splitter_chunks": {
+        "max_similarity": 0.6205455792356909,
+        "average_score": 0.5141517959127619,
+        "coverage_score": 2.0566071836510478,
+        "redundancy_score": 0.721854654136505,
+        "proxy_recall": 0.5779880659065193,
+        "proxy_precision": 0.792297141776257
+    },
+    "recursive_text_splitter_chunks": {
+        "max_similarity": 0.6205455792356909,
+        "average_score": 0.5141517959127619,
+        "coverage_score": 2.0566071836510478,
+        "redundancy_score": 0.721854654136505,
+        "proxy_recall": 0.5779880659065193,
+        "proxy_precision": 0.792297141776257
+    },
+    "token_text_splitter_chunks": {
+        "max_similarity": 0.49061027051350065,
+        "average_score": 0.36253542767906316,
+        "coverage_score": 1.4501417107162526,
+        "redundancy_score": 0.5372036900159504,
+        "proxy_recall": 0.4393803333797256,
+        "proxy_precision": 0.8253317376631129
+    },
+    "semantic_chunks": {
+        "max_similarity": 0.6293833236865743,
+        "average_score": 0.5137258322013152,
+        "coverage_score": 2.0549033288052607,
+        "redundancy_score": 0.6786204014513576,
+        "proxy_recall": 0.5831203270924707,
+        "proxy_precision": 0.8351054307499575
+    }
+}
